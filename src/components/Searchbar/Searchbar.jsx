@@ -1,14 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
+import { IoSearch } from 'react-icons/io5';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
-class Searchbar extends Component {
+class Searchbar extends React.Component {
   state = {
-      querySearch: '',
+    querySearch: '',
   };
 
-    onFormSubmit = (e) => {
-      e.preventDefault();
-      this.props.querySearchInSearchbar(this.state.querySearch);
+  onFormSubmit = e => {
+    e.preventDefault();
+    const normalizedQuerySearch = this.state.querySearch.trim();
+
+    if (normalizedQuerySearch)
+      this.props.querySearchInSearchbar(normalizedQuerySearch);
+    else NotificationManager.warning('Please, enter correct query search');
   };
 
   handleInputChange = e => {
@@ -20,6 +31,7 @@ class Searchbar extends Component {
       <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={this.onFormSubmit}>
           <button type="submit" className={css['SearchForm-button']}>
+            <IoSearch size={20} />
             <span className={css['SearchForm-button-label']}>Search</span>
           </button>
 
@@ -33,9 +45,14 @@ class Searchbar extends Component {
             placeholder="Search images and photos"
           />
         </form>
+        <NotificationContainer />
       </header>
     );
   }
 }
+
+Searchbar.propTypes = {
+  querySearchInSearchbar: PropTypes.func.isRequired,
+};
 
 export default Searchbar;

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import Loader from './Loader/Loader';
 
-class App extends Component {
+class App extends React.Component {
   state = {
     search: '',
     page: 1,

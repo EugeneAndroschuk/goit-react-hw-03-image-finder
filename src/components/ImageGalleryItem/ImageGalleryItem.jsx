@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 
-class ImageGalleryItem extends Component {
-  state = {};
-
+const ImageGalleryItem=(props)=> {
+  const { webformatURL } = props;
   
-
-  render() {
     return (
       <>
         <img
           className={css['ImageGalleryItem-image']}
-          src={this.props.webformatURL}
+          src={webformatURL}
           alt=""
         />
       </>
     );
-  }
+  
 }
+
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+};
 
 export default ImageGalleryItem;

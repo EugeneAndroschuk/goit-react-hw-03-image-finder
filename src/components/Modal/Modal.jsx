@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-class Modal extends Component {
+class Modal extends React.Component {
   state = {};
 
   componentDidMount() {
@@ -34,5 +35,10 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  onCloseModalEsc: PropTypes.func.isRequired,
+};
 
 export default Modal;
